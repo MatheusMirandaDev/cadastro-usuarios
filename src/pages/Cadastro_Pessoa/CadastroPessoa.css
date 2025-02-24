@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  flex-direction: column;
+  justify-content: center; 
+  width: 100vw;
+  min-height: 100vh;
+  overflow-y: auto; /* Permite rolagem vertical */
+  -ms-overflow-style: none; /* Para IE */
+  scrollbar-width: none; /* Para Firefox */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+form {
+  background: #ffffff; /* Fundo branco para o formulário */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+h1 {
+  color: #333333; /* Título em cinza escuro */
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+form input {
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  padding: 10px;
+  font-size: 16px;
+  background: #f9f9f9; 
+  outline: none;
+}
+
+form input.erro {
+  border: 2px solid red;
+  background-color: #ffe6e6;
+}
+
+
+form input:focus {
+  background-color: #ffffff;
+  border-color: #003796;
+}
+
+form button {
+  height: 45px;
+  border-radius: 5px;
+  background-color: #0071e9; 
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+}
+
+form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Cards Container */
+.cards-container {
+  overflow-y: auto;
+  max-height: 400px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.cards-container::-webkit-scrollbar {
+  display: none; /* Esconde a barra de rolagem */
+}
+
+.cards-container {
+  -ms-overflow-style: none; /* Para IE */
+  scrollbar-width: none; /* Para Firefox */
+}
+
+/* Cards */
+.card {
+  background: #ffffff; 
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card p {
+  color: #000000;
+  font-weight: bold;
+}
+
+.card span {
+  font-weight: normal;
+}
+
+.card button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.card button img {
+  width: 20px;
+  transition: 0.2s;
+}
+
+.card button:hover img {
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+
