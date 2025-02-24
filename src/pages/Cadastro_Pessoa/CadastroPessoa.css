@@ -15,23 +15,27 @@ html, body {
 }
 
 body {
+  display: flex;
   flex-direction: column;
-  justify-content: center; 
-  width: 100vw;
+  justify-content: flex-start; /* Evita sobreposição */
+  align-items: center;
   min-height: 100vh;
-  overflow-y: auto; /* Permite rolagem vertical */
+  padding-top: 60px; /* Garante espaço abaixo da navbar */
+  overflow-y: auto; /* Permite rolagem se necessário */
   -ms-overflow-style: none; /* Para IE */
   scrollbar-width: none; /* Para Firefox */
 }
+
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
   max-width: 400px;
+  padding-top: 20px; /* Espaço extra para evitar sobreposição */
 }
+
 
 form {
   background: #ffffff; /* Fundo branco para o formulário */
