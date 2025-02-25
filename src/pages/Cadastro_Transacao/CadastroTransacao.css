@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-x: auto; /* Permite rolagem horizontal se necessário */
+}
+
+/* Título principal */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* Estilo dos rótulos */
+label {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+/* Estilo dos campos de entrada */
+input, select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Estilo do botão de submit */
+button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilo da tabela */
+table {
+  width: auto; /* Agora a tabela ocupa 100% do container */
+  min-width: 900px;
+  margin-top: 40px;
+  border-collapse: collapse;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* Estilo das células da tabela */
+table th, table td {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #1949e6;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+.input-erro {
+  border: 2px solid red;
+}
+
+.despesa {
+  color: red;
+}
+
+.receita {
+  color: green;
+}

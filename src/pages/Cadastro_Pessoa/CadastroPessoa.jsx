@@ -1,21 +1,22 @@
+// cadastroPessoa.jsx
 import { useEffect, useState } from "react";
 import "./CadastroPessoa.css";
 import Lixo from "../../assets/lixo.svg";
 import api from '../../services/api'
 
 function Cadastro_Pessoa() {
-  const [users, setUsers] = useState([]);
+  const [pessoa, setUsers] = useState([]);
   const [idade, setIdade] = useState("");
   const [nome, setNome] = useState("");
   const [erroNome, setErroNome] = useState(false);
   const [erroIdade, setErroIdade] = useState(false);
 
-  async function getUsers() {
-    const usersFromApi = await api.get("/Musicas");
-    setUsers(usersFromApi.data);
+  async function getPessoa() {
+    const pessoaFromApi = await api.get("/Pessoa");
+    setUsers(pessoaFromApi.data);
   }
 
-  async function createUsers() {
+  async function createPessoa() {
     const idadeNumero = Number(idade);
     const nomeValido = nome.trim() !== "";
     const idadeValida = /^\d+$/.test(idade) && idadeNumero >= 1 && idadeNumero <= 122;
@@ -28,30 +29,37 @@ function Cadastro_Pessoa() {
       return;
     }
 
-    await api.post("/Musicas", {
+    await api.post("/Pessoa", {
       nome: nome.trim(),
-      anoLancamento: idadeNumero
+      idade: idadeNumero
     });
-    getUsers();
+    getPessoa();
     setNome("");
     setIdade("");
   }
 
-  async function deleteUsers(id) {
+  async function deletePessoa(id) {
+    console.log("Tentando deletar a pessoa com ID:", id);
     try {
-      await api.delete(`/Musicas/${id}`);
-      setUsers(users.filter(user => user.id !== id));
+      if (id) {
+        const response = await api.delete(`/Pessoa/${id}`);
+        console.log("Resposta do backend:", response);
+        setUsers(pessoa.filter(pessoa => pessoa.id !== id)); // Atualiza a lista
+      } else {
+        console.log("ID inválido:", id);
+      }
     } catch (error) {
-      console.error("Erro ao deletar:", error);
+      console.error("Erro ao deletar:", error.response ? error.response.data : error.message);
     }
-    getUsers();
+    getPessoa();  // Recarrega a lista de pessoas
   }
+  
 
   useEffect(() => {
-    getUsers();
+    getPessoa();
   }, []);
 
-  function handleIdadeChange(event) {
+  function limiteIdade(event) {
     const valor = event.target.value;
     if (/^\d*$/.test(valor) && (valor === "" || (Number(valor) >= 1 && Number(valor) <= 122))) {
       setIdade(valor);
@@ -59,7 +67,7 @@ function Cadastro_Pessoa() {
     }
   }
 
-  function handleNomeChange(event) {
+  function caracteresPermitidos(event) {
     const valor = event.target.value;
     if (/^[A-Za-zÀ-ÖØ-öø-ÿ\s]*$/.test(valor)) {
       setNome(valor);
@@ -73,36 +81,39 @@ function Cadastro_Pessoa() {
         <h1>Cadastro de Pessoa</h1>
         <input
           className={erroNome ? "erro" : ""}
-          placeholder="Nome"
+          placeholder="Nome*"
           type="text"
           name="name"
           value={nome}
-          onChange={handleNomeChange}
+          onChange={caracteresPermitidos}
           required
         />
         <input
           className={erroIdade ? "erro" : ""}
-          placeholder="Idade"
+          placeholder="Idade*"
           type="text"
           name="age"
           value={idade}
-          onChange={handleIdadeChange}
+          onChange={limiteIdade}
           required
         />
-        <button type="button" onClick={createUsers}>Cadastrar</button>
+        <button type="button" onClick={createPessoa}>Cadastrar</button>
       </form>
 
-      {users.map((user) => (
-        <div key={user.id} className="card">
-          <div>
-            <p>*Nome: <span> {user.nome} </span></p>
-            <p>*Idade: <span>{user.anoLancamento} </span></p>
-          </div>
-          <button onClick={() => deleteUsers(user.id)}>
-            <img src={Lixo} />
-          </button>
-        </div>
-      ))}
+      {pessoa.map((pessoa, index) => (
+  <div key={pessoa.id || index} className="card">
+    <div>
+      <p>Nome: <span>{pessoa.nome}</span></p>
+      <p>Idade: <span>{pessoa.idade}</span></p>
+    </div>
+    <button onClick={() => {
+  console.log("ID da pessoa para deletar:", pessoa.id);  // Adicionei o log para verificar o valor do ID
+  deletePessoa(pessoa.id);
+}}>
+  <img src={Lixo} />
+</button>
+  </div>
+))}
     </div>
   );
 }
