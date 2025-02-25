@@ -6,7 +6,7 @@ function CadastroTransacao() {
   const [transacoes, setTransacao] = useState([]);
   const [descricao, setDescricao] = useState("");
   const [valor, setValor] = useState("");
-  const [tipo, setTipo] = useState("Despesa"); // Trabalhar com string
+  const [tipo, setTipo] = useState("Despesa");
   const [pessoaId, setPessoaId] = useState("");
   const [pessoas, setPessoas] = useState([]);
   const [pessoaSelecionada, setPessoaSelecionada] = useState(null);
@@ -57,17 +57,17 @@ function CadastroTransacao() {
     }
 
     try {
-      const tipoConvertido =
-        pessoaSelecionada && pessoaSelecionada.idade < 18
-          ? 0
-          : tipo === "Despesa"
-          ? 0
-          : 1;
+      // Se a pessoa for menor de 18, só poderá ter "Despesa"
+      const tipoConvertido = pessoaSelecionada && pessoaSelecionada.idade < 18
+        ? 1  // Menores de idade só podem ter despesa (1)
+        : tipo === "Despesa"
+        ? 1  // Tipo Despesa é 1
+        : 0; // Caso contrário, será receita (0)
 
       const newTransacao = {
         descricao,
         valor: parseFloat(valor).toFixed(2),
-        tipo: tipoConvertido, // Garante que sempre seja um número
+        tipo: tipoConvertido, 
         pessoaId: parseInt(pessoaId),
       };
 
@@ -172,8 +172,8 @@ function CadastroTransacao() {
                 <td>{transacao.pessoa?.nome}</td>
                 <td>R$ {transacao.valor}</td>
                 <td className="descricao">{transacao.descricao}</td>
-                <td className={transacao.tipo === 0 ? "despesa" : "receita"}>
-                 <strong>{transacao.tipo === 0 ? "Despesa" : "Receita"}</strong>
+                <td className={transacao.tipo === 1 ? "despesa" : "receita"}>
+                  <strong>{transacao.tipo === 1 ? "Despesa" : "Receita"}</strong>
                 </td>
               </tr>
             ))}

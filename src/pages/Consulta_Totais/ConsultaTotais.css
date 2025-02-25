@@ -1,0 +1,48 @@
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+  }
+  
+  table th,
+  table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #1949e6;
+    color: white;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .totais-gerais {
+    text-align: center;
+    font-size: 1.2em;
+  }
+  
+  .totais-gerais p {
+    margin: 10px 0;
+  }
+  .despesa-negativa {
+    color: red;
+  }
+  
+  .saldo-negativo {
+    color: red;
+  }
