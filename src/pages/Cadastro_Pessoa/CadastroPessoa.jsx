@@ -95,8 +95,8 @@ function Cadastro_Pessoa() {
       {users.map((user) => (
         <div key={user.id} className="card">
           <div>
-            <p>Nome: <span> {user.nome} </span></p>
-            <p>Idade: <span>{user.anoLancamento} </span></p>
+            <p>*Nome: <span> {user.nome} </span></p>
+            <p>*Idade: <span>{user.anoLancamento} </span></p>
           </div>
           <button onClick={() => deleteUsers(user.id)}>
             <img src={Lixo} />
